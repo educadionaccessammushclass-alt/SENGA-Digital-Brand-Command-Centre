@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>SENGA | Digital Brand Command Centre</title>
+<style>
+:root{
+ --bg:#101114;--panel:#191b20;--panel2:#22252b;
+ --gold:#D4AF37;--white:#F8F7F2;--muted:#A9ABB1;
+ --line:#373A40;--green:#15966B;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:var(--bg);color:var(--white);
+ font-family:Arial,Helvetica,sans-serif;
+}
+button,input,textarea,select{font:inherit}
+.topbar{
+ background:#0B0C0F;border-bottom:1px solid var(--line);
+ padding:14px 5%;display:flex;align-items:center;
+ justify-content:space-between;gap:15px;
+ position:sticky;top:0;z-index:10;
+}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{
+ width:43px;height:43px;border:2px solid var(--gold);
+ border-radius:50%;display:grid;place-items:center;
+ color:var(--gold);font-size:25px;font-weight:900;
+}
+.brand strong{letter-spacing:2px;font-size:19px}
+.brand small{
+ display:block;color:var(--gold);font-size:9px;
+ letter-spacing:1.5px;margin-top:4px;
+}
+nav{display:flex;gap:17px;flex-wrap:wrap}
+nav a{
+ color:#DDD;text-decoration:none;font-size:12px;
+}
+nav a:hover{color:var(--gold)}
+.container{max-width:1180px;margin:auto;padding:25px 18px 55px}
+.hero{
+ display:grid;grid-template-columns:1fr 1fr;
+ min-height:420px;background:#1A1C21;
+ border:1px solid var(--line);border-radius:15px;
+ overflow:hidden;
+}
+.hero-content{
+ padding:clamp(25px,5vw,55px);
+ display:flex;flex-direction:column;justify-content:center;
+}
+.kicker{
+ color:var(--gold);font-size:10px;font-weight:bold;
+ letter-spacing:2.5px;text-transform:uppercase;
+}
+.hero h1{
+ font-size:clamp(50px,8vw,88px);line-height:.9;
+ letter-spacing:-4px;margin:20px 0 12px;
+}
+.tagline{font-size:21px;color:var(--gold);font-weight:bold}
+.hero p{color:#C6C8CC;line-height:1.7;font-size:14px}
+.hero-photo{position:relative;min-height:360px;background:#27292D}
+.hero-photo img{
+ width:100%;height:100%;min-height:360px;
+ object-fit:cover;object-position:center;
+ display:block;
+}
+.photo-credit{
+ position:absolute;bottom:0;left:0;right:0;
+ background:linear-gradient(transparent,#000E);
+ padding:35px 15px 12px;font-size:10px;color:#EEE;
+}
+.photo-credit a{color:var(--gold)}
+.btn{
+ display:inline-block;border:0;border-radius:7px;
+ padding:12px 16px;font-size:12px;font-weight:bold;
+ cursor:pointer;text-decoration:none;text-align:center;
+}
+.gold{background:var(--gold);color:#171717}
+.dark{background:#292C32;color:white;border:1px solid #555}
+.green{background:var(--green);color:white}
+.buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.section{margin-top:40px}
+.section-head{margin-bottom:17px}
+.section-head h2{font-size:25px;margin:8px 0}
+.muted{color:var(--muted);font-size:13px;line-height:1.65}
+.grid{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:13px;
+}
+.tile,.card{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:12px;padding:19px;
+}
+.tile{min-height:150px}
+.tile .number{color:var(--gold);font-size:11px;font-weight:bold}
+.tile h3{font-size:17px;margin:15px 0 8px}
+.tile p{font-size:12px;color:var(--muted);line-height:1.6;margin:0}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card h3{margin:0 0 14px;font-size:18px}
+.list-item{
+ padding:12px 0;border-bottom:1px solid var(--line);
+ display:flex;justify-content:space-between;gap:10px;
+ font-size:13px;
+}
+.list-item:last-child{border-bottom:0}
+.pill{
+ color:var(--gold);border:1px solid #66552B;
+ border-radius:20px;padding:4px 8px;font-size:9px;
+ white-space:nowrap;
+}
+.post-preview{
+ background:#111317;border:1px solid var(--line);
+ border-radius:10px;padding:17px;
+}
+.post-preview small{color:var(--gold);font-weight:bold}
+.post-preview h3{margin:13px 0;font-size:21px}
+.post-preview p{color:#D0D0D0;line-height:1.7;font-size:14px}
+label{display:block;font-size:12px;margin:13px 0 6px}
+input,textarea,select{
+ width:100%;padding:11px;background:#101216;color:white;
+ border:1px solid #494C53;border-radius:7px;
+}
+textarea{min-height:90px;resize:vertical}
+.metric{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:10px;margin:20px 0;
+}
+.metric div{
+ background:#202329;padding:14px;border-radius:9px;
+}
+.metric strong{font-size:22px;display:block;color:var(--gold)}
+.metric span{font-size:10px;color:var(--muted)}
+.notice{
+ margin-top:12px;font-size:11px;
+ color:#92959B;line-height:1.6;
+}
+footer{
+ border-top:1px solid var(--line);margin-top:45px;
+ padding:22px 0;color:#858990;font-size:11px;
+ display:flex;justify-content:space-between;gap:12px;
+ flex-wrap:wrap;
+}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr}
+ .hero-photo{min-height:280px;max-height:350px}
+ .hero-photo img{min-height:280px}
+ .grid{grid-template-columns:1fr 1fr}
+ .columns{grid-template-columns:1fr}
+ nav{gap:10px}
+}
+@media(max-width:430px){
+ .grid{grid-template-columns:1fr}
+ .container{padding:16px 12px 40px}
+ .topbar{padding:11px 12px}
+ nav a{font-size:10px}
+ .brand strong{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+ <div class="brand">
+  <div class="logo">S</div>
+  <div>
+   <strong>SENGA</strong>
+   <small>DIGITAL BRAND COMMAND CENTRE</small>
+  </div>
+ </div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#brand">Brand</a>
+  <a href="#content">Content</a>
+  <a href="#studio">Studio</a>
+ </nav>
+</header>
+
+<main class="container">
+
+<!-- MAIN BRAND PRESENTATION -->
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="kicker">Tanzanian Comedy & Entertainment</div>
+  <h1>SENGA</h1>
+  <div class="tagline">Daktari wa Kutibu Stress</div>
+  <p>
+   Comedy, entertainment, gospel and creative expression.
+   A digital platform concept bringing Senga's public
+   creative identity and professional opportunities
+   together in one place.
+  </p>
+  <div class="buttons">
+   <a class="btn gold" href="#studio">Explore Content Studio</a>
+   <a class="btn dark" href="#brand">Explore Brand Identity</a>
+  </div>
+ </div>
+
+ <div class="hero-photo">
+  <img
+   src="https://www.mwanaspoti.co.tz/resource/image/3192168/landscape_ratio2x1/320/160/9249c01b387b63c3694ba5f50d4f8492/Rl/senga-pic.jpg"
+   alt="Senga during a Mwanaspoti interview"
+   onerror="this.style.display='none';this.parentElement.style.background='#25272C';this.parentElement.innerHTML+='<div style=&quot;padding:30px;color:#D4AF37;text-align:center&quot;>SENGA<br><br>Photograph unavailable in this browser.<br><a style=&quot;color:white&quot; href=&quot;https://www.mwanaspoti.co.tz/ms/soka/senga-ataka-akifa-azikwe-na-shuka-la-yanga-3192166&quot;>Open original photograph</a></div>'"
+  >
+  <div class="photo-credit">
+   Editorial photograph: Mwanaspoti.
+   <a href="https://www.mwanaspoti.co.tz/ms/soka/senga-ataka-akifa-azikwe-na-shuka-la-yanga-3192166" target="_blank" rel="noopener">Original publication</a>
+  </div>
+ </div>
+</section>
+
+<!-- BRAND IDENTITY -->
+<section class="section" id="brand">
+ <div class="section-head">
+  <div class="kicker">Brand architecture</div>
+  <h2>One Creative Identity. Multiple Expressions.</h2>
+  <p class="muted">
+   A proposed digital structure for presenting and organising
+   Senga's different creative activities.
+  </p>
+ </div>
+
+ <div class="grid">
+  <div class="tile">
+   <div class="number">01 / COMEDY</div>
+   <h3>Comedy & Entertainment</h3>
+   <p>Comedy performances, characters, sketches, short videos and memorable moments.</p>
+  </div>
+  <div class="tile">
+   <div class="number">02 / GOSPEL</div>
+   <h3>Gospel & Ministry</h3>
+   <p>Gospel music, ministry messages, performances and faith-centred creative work.</p>
+  </div>
+  <div class="tile">
+   <div class="number">03 / LEGACY</div>
+   <h3>Senga & Pembe</h3>
+   <p>Classic partnership, archived performances, memorable scenes and creative history.</p>
+  </div>
+  <div class="tile">
+   <div class="number">04 / BUSINESS</div>
+   <h3>Bookings & Partnerships</h3>
+   <p>Event enquiries, commercial collaborations, media appearances and brand partnerships.</p>
+  </div>
+ </div>
+</section>
+
+<!-- COMMAND CENTRE -->
+<section class="section" id="content">
+ <div class="section-head">
+  <div class="kicker">Management dashboard</div>
+  <h2>Content Command Centre</h2>
+  <p class="muted">A structured overview of the proposed content portfolio.</p>
+ </div>
+
+ <div class="metric">
+  <div><strong>04</strong><span>CONTENT PILLARS</span></div>
+  <div><strong>01</strong><span>BRAND PROFILE</span></div>
+  <div><strong>01</strong><span>CONTENT STUDIO</span></div>
+ </div>
+
+ <div class="columns">
+  <div class="card">
+   <h3>Content Portfolio</h3>
+   <div class="list-item"><span>Comedy sketches & characters</span><span class="pill">COMEDY</span></div>
+   <div class="list-item"><span>Gospel songs & messages</span><span class="pill">GOSPEL</span></div>
+   <div class="list-item"><span>Senga–Pembe archive</span><span class="pill">LEGACY</span></div>
+   <div class="list-item"><span>Media interviews</span><span class="pill">PRESS</span></div>
+   <div class="list-item"><span>Live events & appearances</span><span class="pill">EVENTS</span></div>
+  </div>
+
+  <div class="card">
+   <h3>Professional Opportunities</h3>
+   <div class="list-item"><span>Event bookings</span><span class="pill">BOOKING</span></div>
+   <div class="list-item"><span>Brand endorsements</span><span class="pill">BRANDS</span></div>
+   <div class="list-item"><span>Media collaborations</span><span class="pill">MEDIA</span></div>
+   <div class="list-item"><span>Digital content partnerships</span><span class="pill">DIGITAL</span></div>
+   <div class="list-item"><span>Music & entertainment projects</span><span class="pill">PROJECTS</span></div>
+  </div>
+ </div>
+</section>
+
+<!-- INTERACTIVE CONTENT STUDIO -->
+<section class="section" id="studio">
+ <div class="section-head">
+  <div class="kicker">Interactive demonstration</div>
+  <h2>Content Publishing Studio</h2>
+  <p class="muted">
+   Create a sample post, preview the presentation and
+   share its text through WhatsApp.
+  </p>
+ </div>
+
+ <div class="columns">
+  <div class="card">
+   <h3>Post Editor</h3>
+
+   <label for="category">Content category</label>
+   <select id="category">
+    <option>Comedy & Entertainment</option>
+    <option>Gospel & Ministry</option>
+    <option>Senga–Pembe Legacy</option>
+    <option>Bookings & Events</option>
+   </select>
+
+   <label for="postTitle">Post title</label>
+   <input id="postTitle" value="Senga – Daktari wa Kutibu Stress">
+
+   <label for="caption">Post caption</label>
+   <textarea id="caption">Mweee! Stress imezidi? Karibu kwenye dozi ya kicheko. SENGA – Daktari wa Kutibu Stress!</textarea>
+
+   <div class="buttons">
+    <button class="btn gold" onclick="updatePost()">Update Preview</button>
+    <button class="btn green" onclick="sharePost()">Share on WhatsApp</button>
+   </div>
+
+   <p class="notice">
+    This demonstration creates and shares a post message.
+    It does not publish directly to social media accounts.
+   </p>
+  </div>
+
+  <div class="card">
+   <h3>Audience Preview</h3>
+
+   <div class="post-preview">
+    <small id="previewCategory">COMEDY & ENTERTAINMENT</small>
+    <h3 id="previewTitle">Senga – Daktari wa Kutibu Stress</h3>
+    <p id="previewCaption">
+     Mweee! Stress imezidi? Karibu kwenye dozi ya kicheko.
+     SENGA – Daktari wa Kutibu Stress!
+    </p>
+    <div class="notice">SENGA · Sample Content Presentation</div>
+   </div>
+
+   <div class="buttons">
+    <button class="btn dark" onclick="copyPost()">Copy Post Text</button>
+    <button class="btn dark" onclick="window.print()">Print / PDF</button>
+   </div>
+   <p class="notice" id="feedback" aria-live="polite"></p>
+  </div>
+ </div>
+</section>
+
+<!-- PUBLIC IDENTITY SOURCES -->
+<section class="section">
+ <div class="card">
+  <div class="kicker">Public identity references</div>
+  <h2>Media & Creative History</h2>
+  <p class="muted">
+   The proposed identity structure is informed by public
+   reporting about Senga's comedy career, his description
+   as a stress-relief comedian, his collaboration with
+   Pembe and his wider creative interests.
+  </p>
+  <div class="buttons">
+   <a class="btn dark"
+    href="https://www.mwanaspoti.co.tz/ms/burudani/ukitaka-kuondoa-stresi-kutana-na-huyu-senga-3179702"
+    target="_blank" rel="noopener">Senga Profile – Mwanaspoti</a>
+   <a class="btn dark"
+    href="https://www.mwanaspoti.co.tz/ms/burudani/mweee-eti-senga-hajapata-mrithi-3080546"
+    target="_blank" rel="noopener">Senga & Pembe – Mwanaspoti</a>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <span>SENGA · DIGITAL BRAND COMMAND CENTRE</span>
+ <span>Independent presentation concept · 2026</span>
+</footer>
+
+</main>
+
+<script>
+function updatePost(){
+ const category=document.getElementById("category").value;
+ const title=document.getElementById("postTitle").value;
+ const caption=document.getElementById("caption").value;
+
+ document.getElementById("previewCategory").textContent=
+  category.toUpperCase();
+ document.getElementById("previewTitle").textContent=title;
+ document.getElementById("previewCaption").textContent=caption;
+ document.getElementById("feedback").textContent=
+  "Preview successfully updated.";
+}
+
+function getPostText(){
+ return document.getElementById("postTitle").value+
+  "\n\n"+
+  document.getElementById("caption").value+
+  "\n\nSENGA – Daktari wa Kutibu Stress";
+}
+
+function sharePost(){
+ updatePost();
+ const url="https://wa.me/?text="+encodeURIComponent(getPostText());
+ window.open(url,"_blank","noopener");
+}
+
+async function copyPost(){
+ try{
+  await navigator.clipboard.writeText(getPostText());
+  document.getElementById("feedback").textContent=
+   "Post text copied successfully.";
+ }catch(error){
+  document.getElementById("feedback").textContent=
+   "Select and copy the post text manually.";
+ }
+}
+</script>
+
+</body>
+</html>
